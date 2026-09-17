@@ -8,7 +8,7 @@ Status: implemented
 
 ## Decision
 
-在 primary 仓库的 `.dsh/notes/` 下启用 agents notes，沿袭 deepseek-harness `.agents/notes` 的组织逻辑：
+在 `.dsh/notes/` 下启用 agents notes，沿袭 deepseek-harness `.agents/notes` 的组织逻辑：
 
 - **路径编码**：`{lifecycle}/{class}/yyyy-mm-dd-topic-title.md`。生命周期为顶层文件夹（`proposed/` → `implemented/`，否决的转 `rejected/`，已落地且不再指导未来的 implemented 记录移入冻结的 `archived/`）；类别为嵌套文件夹，封闭集合为 `feature` / `bug-fix` / `simplification` / `architecture` / `process` / `testing`。文件名日期是主题首次提出时间，交叉引用用相对 Markdown 链接，不设集中式 `INDEX.md`。
 - **文件格式**：头部块严格为 `# Agent Note: <title>` + 空行 + `Status: <status>`；正文以 `## Problem` 开头，按生命周期使用规范骨架（proposed: `## Proposal` / `## Acceptance criteria` / `## Risks`；implemented: `## Decision` / `## Consequences`，且禁止 `## Proposal` 等提案期标题；rejected: 冻结提案并只在状态行写原因）；每份 note 必含 `## Alternatives considered`。
@@ -23,7 +23,6 @@ Status: implemented
 ## Alternatives considered
 
 - **不引入任何机制，继续依赖 `PROJECT_STRUCTURE.md` + 会话记忆**——`PROJECT_STRUCTURE.md` 按设计是"持续更新的项目简要总结"，只承载现状概览；会话记忆不可重建、不可检索。落选。
-- **在三个代码仓库各自建 notes**——决策常常跨仓库（如双产物同时影响 ts_api 与小程序侧 `utils/consts.ts`），分散存放会造成依据割裂；统一收口在 primary 便于一处检索。落选。
 - **照搬 deepseek-harness 的完整基建（双语三元组 + 校验脚本）**——本工作区无 i18n 约定、无 pnpm 工作区脚本链，整套搬入徒增维护面；保留其组织逻辑、裁剪其基建是性价比更高的适配。落选。
 
 ## Consequences
