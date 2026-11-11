@@ -8,7 +8,7 @@ Status: implemented
 
 ## Decision
 
-在 `.agent/notes/` 下启用 agents notes，沿袭 deepseek-harness `.agents/notes` 的组织逻辑：
+在 `.agents/notes/` 下启用 agents notes，沿袭 deepseek-harness `.agents/notes` 的组织逻辑：
 
 - **路径编码**：`{lifecycle}/{class}/yyyy-mm-dd-topic-title.md`。生命周期为顶层文件夹（`proposed/` → `implemented/`，否决的转 `rejected/`，已落地且不再指导未来的 implemented 记录移入冻结的 `archived/`）；类别为嵌套文件夹，封闭集合为 `feature` / `bug-fix` / `simplification` / `architecture` / `process` / `testing`。文件名日期是主题首次提出时间，交叉引用用相对 Markdown 链接，不设集中式 `INDEX.md`。
 - **文件格式**：头部块严格为 `# Agent Note: <title>` + 空行 + `Status: <status>`；正文以 `## Problem` 开头，按生命周期使用规范骨架（proposed: `## Proposal` / `## Acceptance criteria` / `## Risks`；implemented: `## Decision` / `## Consequences`，且禁止 `## Proposal` 等提案期标题；rejected: 冻结提案并只在状态行写原因）；每份 note 必含 `## Alternatives considered`。
@@ -27,7 +27,7 @@ Status: implemented
 
 ## Consequences
 
-- 跨仓库的"为什么/放弃了什么"从此有唯一归属地，新会话可先读 `PROJECT_STRUCTURE.md` 了解现状，再查 `.agent/notes/` 重建决策依据。
+- 跨仓库的"为什么/放弃了什么"从此有唯一归属地，新会话可先读 `PROJECT_STRUCTURE.md` 了解现状，再查 `.agents/notes/` 重建决策依据。
 - 非平凡变更的变更面变大：同一变更里要新增或更新 note；作为回报，决策依据不再随会话丢失。
 - 无机器校验，格式纪律依赖 review；notes 数量增长后归档纪律（`archived/` 冻结）防止目录树膨胀。
 - 三个代码仓库仍以各自 git 历史为准，note 只作为决策记录，不替代代码、不替代 `PROJECT_STRUCTURE.md` 的现状描述。
